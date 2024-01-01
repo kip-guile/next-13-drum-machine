@@ -1,43 +1,35 @@
-'use client';
-import React from 'react';
-import { Volume2, VolumeX } from 'react-feather';
+'use client'
+import React from 'react'
+import { Volume2, VolumeX } from 'react-feather'
 
-import VisuallyHidden from '../VisuallyHidden';
-import MaxWidthWrapper from '../MaxWidthWrapper';
-import styles from './Header.module.css';
+import VisuallyHidden from '../VisuallyHidden'
+import MaxWidthWrapper from '../MaxWidthWrapper'
+import useSoundContext from '../useSoundContext'
+import styles from './Header.module.css'
 
 function Header() {
-  const id = React.useId();
-
-  // TODO: Global state?
-  const soundEnabled = true;
+  const id = React.useId()
+  const { soundOn, setSoundOn } = useSoundContext()
 
   return (
     <header className={styles.wrapper}>
-      <MaxWidthWrapper
-        className={styles.innerWrapper}
-      >
-        <a href="/">Kool Website</a>
+      <MaxWidthWrapper className={styles.innerWrapper}>
+        <a href='/'>Kool Website</a>
 
         <button
           onClick={() => {
-            // TODO: flip `soundEnabled`
+            console.log(setSoundOn, soundOn)
+            setSoundOn(!soundOn)
           }}
         >
-          {soundEnabled ? (
-            <Volume2 />
-          ) : (
-            <VolumeX />
-          )}
+          {soundOn ? <Volume2 /> : <VolumeX />}
           <VisuallyHidden>
-            {soundEnabled
-              ? 'Disable sound effects'
-              : 'Enable sound effects'}
+            {soundOn ? 'Disable sound effects' : 'Enable sound effects'}
           </VisuallyHidden>
         </button>
       </MaxWidthWrapper>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

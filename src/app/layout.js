@@ -1,22 +1,25 @@
-import React from 'react';
+import React from 'react'
 
-import Header from '../components/Header';
+import Header from '../components/Header'
+import { SoundProvider } from '../components/useSoundContext/useSoundContext'
 
-import './styles.css';
+import './styles.css'
 
 function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
-        <Header />
-        {children}
-        <footer>
-          <img src="/ie-badge.gif" width={100} />
-          <span>Thanks for visiting!</span>
-        </footer>
+        <SoundProvider>
+          <Header />
+          {children}
+          <footer>
+            <img src='/ie-badge.gif' width={100} />
+            <span>Thanks for visiting!</span>
+          </footer>
+        </SoundProvider>
       </body>
     </html>
-  );
+  )
 }
 
-export default RootLayout;
+export default RootLayout
